@@ -14,6 +14,9 @@
 参考的设计给 https://skynet.qtum.info/ 加 Features。 
 
 ### Roadmap
+
+![智能合约](/snapshot.png)
+
 - 把 Qtum 客户端跑通，（Done）
 - 搞清协议，设计 API。（Done）
 - 画 UI （Done）
