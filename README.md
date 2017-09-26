@@ -13,13 +13,14 @@
 
 参考的设计给 https://skynet.qtum.info/ 加 Features。 
 
-Roadmap
+### Roadmap
 - 把 Qtum 客户端跑通，（Done）
 - 搞清协议，设计 API。（Done）
 - 画 UI （Done）
 - 添加发送智能合约功能。（Done）
 - 叔块 Visulize （Inprogress)
 
+### Ref
 - https://github.com/qtumproject/qtum-bitcore 
 - https://github.com/qtumproject/qtumcore-node
 - https://github.com/bitpay/bitcoin 
@@ -27,12 +28,9 @@ Roadmap
 - https://github.com/bitpay/insight 
 - https://github.com/qtumproject/qtum-explorer  
 
-
-
-
-~~~
-前置  
+### Playbook
 https://bitcore.io/guides/full-node
+~~~
 qtum
 zeromq
 NVM
@@ -48,9 +46,7 @@ $(npm bin)/qtumcore-node install git+ssh://git@github.com:qtumproject/insight-ap
 $(npm bin)/qtumcore-node install git+ssh://git@github.com:qtumproject/qtum-explorer.git
 find . | grep qtum.conf
 ./.bitcore/data/qtum.conf
-
 $(npm bin)/qtumcore-node install bitcoind
-----
 
 $(npm bin)/qtumcore-node start
 ~~~
