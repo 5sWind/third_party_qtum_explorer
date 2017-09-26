@@ -1,0 +1,183 @@
+<html>
+
+
+    <head>
+
+<link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+
+<script src="src/ace.js" type="text/javascript" charset="utf-8"></script>
+<script src="src/mode-javascript.js" type="text/javascript" charset="utf-8"></script>
+
+
+
+        <link rel="stylesheet" type="text/css" href="css/style.min.css">
+        <style>
+        .textbox {
+            font-size: 24px;
+            padding: 10px;
+            border: 1px solid #2e9ad0;
+            background: none;
+            display: block;
+            width: 100%;
+            color: #eee;
+            margin:0 auto;
+            margin-bottom: 15px;
+        }
+
+        .button {
+            font-size: 24px;
+            padding: 10px 20px;
+            border-radius: 50px;
+            border: 3px solid #2e9ad0;
+            color: #2e9ad0;
+            background: none;
+            transition: all 0.2s linear;
+        }
+
+        .button:hover {
+            background: #2e9ad0;
+            color: #fff;
+        }
+
+        .notification {
+            width: 460px;
+            left: calc(50% - 240px);
+            position: fixed;
+            padding: 20px;
+            background: rgba(0,0,0,0.8);
+            box-shadow: 0 0 15px #2e9ad0;
+            visibility: none;
+            opacity: 0;
+            transition: all 0.2s linear;
+            transform: scale(1.5);
+            top: 250px;
+            z-index: 10000;
+        }
+
+        .notification.active {
+            opacity: 1;
+            visibility: visible;
+            transform: scale(1);
+        }
+</style>
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    </head><body class="" data-gr-c-s-loaded="true">
+
+		<div class="wrapper wrapper-with-footer">
+			<!-- ngInclude: --><header class="header fixed ng-scope" ng-include="" src="'views/includes/header.html'" role="navigation" ng-controller="HeaderController as HC"><a href="." class="logo ng-scope">
+	<img src="images/qtumInsight_logo.png" alt="" class="logoPic-def">
+	<img src="images/qtumInsight_logo-hover.png" alt="" class="logoPic-hover">
+</a>
+
+<div class="header__lang-switcher ng-scope">
+	<div class="language-switcher">
+		<!-- ngRepeat: language in HC.availableLanguages | filter: { isoCode: HC.defaultLanguage } --><div class="language-switcher__selected ng-binding ng-scope" ng-repeat="language in HC.availableLanguages | filter: { isoCode: HC.defaultLanguage }">
+			English
+			<span class="language-switcher__icon">
+				<img src="images/arrow.png" alt="" class="arrow-def">
+				<img src="images/arrow-black.png" alt="" class="arrow-hover">
+			</span>
+		</div><!-- end ngRepeat: language in HC.availableLanguages | filter: { isoCode: HC.defaultLanguage } -->
+		<!-- ngIf: HC.availableLanguages[0] --><nav class="language-switcher__container ng-scope" ng-if="HC.availableLanguages[0]">
+			<!-- ngRepeat: language in HC.availableLanguages --><a ng-repeat="language in HC.availableLanguages" ng-click="HC.setLanguage(language.isoCode)" ng-class="{ 'selected' : HC.defaultLanguage == l.isoCode }" href="#" class="language-switcher__item ng-binding ng-scope">
+				Deutsch
+			</a><!-- end ngRepeat: language in HC.availableLanguages --><a ng-repeat="language in HC.availableLanguages" ng-click="HC.setLanguage(language.isoCode)" ng-class="{ 'selected' : HC.defaultLanguage == l.isoCode }" href="#" class="language-switcher__item ng-binding ng-scope">
+				English
+			</a><!-- end ngRepeat: language in HC.availableLanguages --><a ng-repeat="language in HC.availableLanguages" ng-click="HC.setLanguage(language.isoCode)" ng-class="{ 'selected' : HC.defaultLanguage == l.isoCode }" href="#" class="language-switcher__item ng-binding ng-scope">
+				Spanish
+			</a><!-- end ngRepeat: language in HC.availableLanguages --><a ng-repeat="language in HC.availableLanguages" ng-click="HC.setLanguage(language.isoCode)" ng-class="{ 'selected' : HC.defaultLanguage == l.isoCode }" href="#" class="language-switcher__item ng-binding ng-scope">
+				Japanese
+			</a><!-- end ngRepeat: language in HC.availableLanguages -->
+		</nav><!-- end ngIf: HC.availableLanguages[0] -->
+	</div>
+</div>
+
+<div class="box ng-scope">
+	<nav class="nav">
+		<!-- ngRepeat: item in HC.menu --><a ng-repeat="item in HC.menu" ui-route="blocks" href="blocks" class="nav__item ng-scope ng-binding">
+			Blocks
+        </a>
+        <a class="nav__item ng-scope ng-binding">Status</a><!-- end ngRepeat: item in HC.menu --><a ng-repeat="item in HC.menu" ui-route="stats" href="stats" class="nav__item ng-scope ng-binding">
+			Stats
+        </a><!-- end ngRepeat: item in HC.menu -->
+        <a class="nav__item ng-scope ng-binding">Smart Contract</a>
+	</nav>
+	<!-- ngInclude: --><div class="search__wrap ng-scope" ng-include="" src="'views/includes/search.html'"><form ng_controller="SearchController as SC" ng-submit="SC.search()" ng-class="{ 'has-error' : SC.badQuery }" class="ng-pristine ng-valid ng-scope">
+	<input type="text" class="field search__field ng-pristine ng-untouched ng-valid ng-empty" ng-model="SC.q" ng-class="{ 'loading' : SC.loading }" placeholder="Search for block, transaction or address">
+	<!-- ngIf: SC.badQuery -->
+</form>
+</div>
+</div></header>
+			<!-- ngView: --><section class="content ng-scope" ng-view="" ng-controller="CurrencyController as CC"><!-- ngInclude: --><div ng-include="" src="'views/includes/connection.html'" class="ng-scope"><div class="connection-status container ng-scope" controller="ConnectionController">
+
+	<!-- ngIf: serverOnline || clienteOnline || apiOnline -->
+</div>
+</div>
+<div class="box ng-scope" ng-controller="BlocksController as BC" ng-init="BC.loadList()">
+	<div class="heading margin1">
+		<h1 class="heading__title" translate=""><span class="ng-scope">Create Contract</span></h1>
+	</div>
+	<div class="date__wrap">
+		<div class="pull-right">
+			<!-- ngIf: BC.datepicker.date -->
+			<!-- ngIf: !BC.pagination.isToday && BC.datepicker.date -->
+
+			<div class="date__textWrap">
+				<div class="">
+					<div>
+						<div class="date__text datepicker-popup datepicker">
+							<input type="text" class="date__textField ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty ng-valid-date" uib-datepicker-popup="yyyy-MM-dd" ng-model="BC.date" is-open="BC.datepicker.isOpened" datepicker-options="BC.datepicker.dateOptions" date-disabled="BC.disableDatepicker(date, mode)" show-button-bar="false" readonly=""><div uib-datepicker-popup-wrap="" ng-model="date" ng-change="dateSelection(date)" template-url="uib/template/datepickerPopup/popup.html" class="ng-pristine ng-untouched ng-valid ng-scope ng-empty"><!-- ngIf: isOpen -->
+                        </div>
+							<!-- ngIf: BC.pagination.currentTs -->
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="section section-blocks">
+		<div>
+            <form>
+                <p><pre id="editor" type="text" class="javascript textbox" style="height:350px;"></pre></p>
+                <p style="text-align:center;"><input type="button" class="button" value="Create" /></p>
+            </form>
+		</div>
+	</div>
+	<!-- ngIf: !BC.blocks.length && !BC.loading -->
+</div>
+
+<div class="notification"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.8/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+
+    var editor = ace.edit("editor");
+    editor.setTheme("ace/theme/chaos");
+    editor.getSession().setMode("ace/mode/javascript");
+   	editor.getSession().setOption("useWorker", false);
+    $('.button').click(function(){
+        $.post('/contract', { code: editor.getValue() }, function (data) {
+            $('.notification').text(data.message);
+            $('.notification').addClass('active');
+        });
+    });
+
+    $(window).click(function (e) {
+        if (!$(e.target).hasClass('notification') && !$(e.target).hasClass('button')) {
+            $('.notification').removeClass('active');
+        }
+    });
+</script>
+
+</section>
+		</div>
+		<footer class="footer">
+			<div class="box">
+				<div class="copy" translate=""><span class="ng-scope">2017 QTUM Insight © All rights reserved</span></div>
+			</div>
+		</footer>
+
+
+</body>
+</html>

@@ -1,0 +1,97 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "git+ssh://git@github.com:qtumproject/qtum-explorer.git",
+        "scope": null,
+        "escapedName": null,
+        "name": null,
+        "rawSpec": "git+ssh://git@github.com:qtumproject/qtum-explorer.git",
+        "spec": "git+ssh://git@github.com/qtumproject/qtum-explorer.git",
+        "type": "hosted",
+        "hosted": {
+          "type": "github",
+          "ssh": "git@github.com:qtumproject/qtum-explorer.git",
+          "sshUrl": "git+ssh://git@github.com/qtumproject/qtum-explorer.git",
+          "httpsUrl": "git+https://github.com/qtumproject/qtum-explorer.git",
+          "gitUrl": "git://github.com/qtumproject/qtum-explorer.git",
+          "shortcut": "github:qtumproject/qtum-explorer",
+          "directUrl": "https://raw.githubusercontent.com/qtumproject/qtum-explorer/master/package.json"
+        }
+      },
+      "/Users/minakokojima/Desktop/qtum-test/mynode"
+    ]
+  ],
+  "_from": "git+ssh://git@github.com/qtumproject/qtum-explorer.git",
+  "_id": "qtum-explorer@0.0.1",
+  "_inCache": true,
+  "_location": "/qtum-explorer",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "git+ssh://git@github.com:qtumproject/qtum-explorer.git",
+    "scope": null,
+    "escapedName": null,
+    "name": null,
+    "rawSpec": "git+ssh://git@github.com:qtumproject/qtum-explorer.git",
+    "spec": "git+ssh://git@github.com/qtumproject/qtum-explorer.git",
+    "type": "hosted",
+    "hosted": {
+      "type": "github",
+      "ssh": "git@github.com:qtumproject/qtum-explorer.git",
+      "sshUrl": "git+ssh://git@github.com/qtumproject/qtum-explorer.git",
+      "httpsUrl": "git+https://github.com/qtumproject/qtum-explorer.git",
+      "gitUrl": "git://github.com/qtumproject/qtum-explorer.git",
+      "shortcut": "github:qtumproject/qtum-explorer",
+      "directUrl": "https://raw.githubusercontent.com/qtumproject/qtum-explorer/master/package.json"
+    }
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "git+ssh://git@github.com/qtumproject/qtum-explorer.git#2c751628f1ff1a9c2f964e9885e6ede61a5d0686",
+  "_shasum": "61fa1a861097571ba36e9ccfd9a68b8b4515d920",
+  "_shrinkwrap": null,
+  "_spec": "git+ssh://git@github.com:qtumproject/qtum-explorer.git",
+  "_where": "/Users/minakokojima/Desktop/qtum-test/mynode",
+  "bitcoreNode": "bitcore-node",
+  "bugs": {
+    "url": "https://github.com/qtumproject/qtum-explorer/issues"
+  },
+  "contributors": [],
+  "dependencies": {},
+  "description": "An open-source frontend for the Insight API. The Insight API provides you with a convenient, powerful and simple way to query and broadcast data on the qtum network and build your own services with it.",
+  "devDependencies": {
+    "bower": "~1.2.8",
+    "grunt": "~0.4.2",
+    "grunt-angular-gettext": "^0.2.15",
+    "grunt-cli": "~0.1.11",
+    "grunt-contrib-concat": "~0.3.0",
+    "grunt-contrib-jshint": "~0.8.0",
+    "grunt-contrib-uglify": "~0.3.2",
+    "grunt-contrib-watch": "*",
+    "grunt-css": "~0.5.4",
+    "grunt-macreload": "*",
+    "grunt-markdown": "~0.5.0"
+  },
+  "gitHead": "2c751628f1ff1a9c2f964e9885e6ede61a5d0686",
+  "homepage": "https://github.com/qtumproject/qtum-explorer",
+  "keywords": [
+    "insight",
+    "blockchain",
+    "blockexplorer",
+    "qtum",
+    "qtumcore",
+    "front-end"
+  ],
+  "license": "MIT",
+  "name": "qtum-explorer",
+  "optionalDependencies": {},
+  "readme": "# Explorer\n\nA QTUM blockchain explorer web application service for [Qtumcore Node](https://github.com/qtumproject/qtumcore-node) using the [QTUM API](https://github.com/qtumproject/insight-api).\n\n\n## Install SSH\n\n```\nnvm use v6\n```\n\n```\nnpm install git+ssh://git@github.com:qtumproject/qtumcore-node.git\n$(npm bin)/qtumcore-node create mynode\ncd mynode \n\n$(npm bin)/qtumcore-node install git+ssh://git@github.com:qtumproject/insight-api.git\n$(npm bin)/qtumcore-node install git+ssh://git@github.com:qtumproject/qtum-explorer.git\n\n```\n\nqtumcore-node.json:\n```\n{\n  \"network\": \"livenet\",\n  \"port\": 3001,\n  \"services\": [\n    \"bitcoind\",\n    \"insight-api\",\n    \"qtum-explorer\",\n    \"web\"\n  ],\n  \"servicesConfig\": {\n    \"qtum-explorer\": {\n      \"routePrefix\": \"\"\n    },\n    \"insight-api\": {\n      \"rateLimiterOptions\": {\n        \"whitelist\": [\"123.456.12.34\", \"::ffff:123.456.12.34\"],\n        \"whitelistLimit\": 9999999,\n        \"limit\": 200,\n        \"interval\": 60000,\n        \"banInterval\": 3600000\n      },\n      \"db\": {\n        \"host\": \"127.0.0.1\",\n        \"port\": \"27017\",\n        \"database\": \"qtum-api\",\n        \"user\": \"\",\n        \"password\": \"\"\n      },\n      \"erc20\": {\n        \"updateFromBlockHeight\": 0\n      }\n    },\n    \"bitcoind\": {\n      \"spawn\": {\n        \"datadir\": \"/home/user/.qtum\",\n        \"exec\": \"/home/user/qtum-bitcore/src/qtumd\"\n      }\n    }\n  }\n}\n```\n\nChange qtum.conf:\n```\nserver=1\nwhitelist=127.0.0.1\ntxindex=1\naddressindex=1\ntimestampindex=1\nspentindex=1\nzmqpubrawtx=tcp://127.0.0.1:28332\nzmqpubhashblock=tcp://127.0.0.1:28332\nrpcallowip=127.0.0.1\nrpcuser=user\nrpcpassword=password\nrpcport=18332\nreindex=1\ngen=0\naddrindex=1\n```\n\n```\n$(npm bin)/qtumcore-node start\n```\n\n\n## Getting Started\n\nTo manually install all of the necessary components, you can run these commands:\n\n```bash\nnpm install -g qtumcore-node\nqtumcore-node create mynode\ncd mynode\nqtumcore-node install insight-api\nqtumcore-node install qtum-explorer\nqtumcore-node start\n```\n\nOpen a web browser to `http://localhost:3001/insight/`\n\n## Development\n\nTo run Insight UI locally in development mode:\n\nInstall bower dependencies:\n\n```\n$ bower install\n```\n\nTo compile and minify the web application's assets:\n\n```\n$ grunt compile\n```\n\nThere is a convenient Gruntfile.js for automation during editing the code\n\n```\n$ grunt\n```\n\n## Multilanguage support\n\nInsight UI uses [angular-gettext](http://angular-gettext.rocketeer.be) for multilanguage support.\n\nTo enable a text to be translated, add the ***translate*** directive to html tags. See more details [here](http://angular-gettext.rocketeer.be/dev-guide/annotate/). Then, run:\n\n```\ngrunt compile\n```\n\nThis action will create a template.pot file in ***po/*** folder. You can open it with some PO editor ([Poedit](http://poedit.net)). Read this [guide](http://angular-gettext.rocketeer.be/dev-guide/translate/) to learn how to edit/update/import PO files from a generated POT file. PO file will be generated inside po/ folder.\n\nIf you make new changes, simply run **grunt compile** again to generate a new .pot template and the angular javascript ***js/translations.js***. Then (if use Poedit), open .po file and choose ***update from POT File*** from **Catalog** menu.\n\nFinally changes your default language from ***public/src/js/config***\n\n```\ngettextCatalog.currentLanguage = 'es';\n```\n\nThis line will take a look at any *.po files inside ***po/*** folder, e.g.\n**po/es.po**, **po/nl.po**. After any change do not forget to run ***grunt\ncompile***.\n\n\n## Note\n\nFor more details about the [QTUM API](https://github.com/qtumproject/insight-api) configuration and end-points, go to [QTUM API](https://github.com/qtumproject/insight-api).\n\n## Contribute\n\nContributions and suggestions are welcomed at the [Explorer GitHub repository](https://github.com/qtumproject/qtum-explorer).\n\n\n## License\n(The MIT License)\n\nPermission is hereby granted, free of charge, to any person obtaining\na copy of this software and associated documentation files (the\n'Software'), to deal in the Software without restriction, including\nwithout limitation the rights to use, copy, modify, merge, publish,\ndistribute, sublicense, and/or sell copies of the Software, and to\npermit persons to whom the Software is furnished to do so, subject to\nthe following conditions:\n\nThe above copyright notice and this permission notice shall be\nincluded in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,\nEXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF\nMERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.\nIN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY\nCLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,\nTORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE\nSOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n",
+  "readmeFilename": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/qtumproject/qtum-explorer.git"
+  },
+  "version": "0.0.1"
+}
